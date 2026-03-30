@@ -2,170 +2,51 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>MGMF — Soon</title>
+<title>MGMF</title>
 <style>
     body {
         margin: 0;
         padding: 0;
         background: #000;
         color: #fff;
-        font-family: "Arial", sans-serif;
+        font-family: Consolas, monospace;
         height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
+        flex-direction: column;
     }
 
-    /* Rozmyte tło */
-    .bg {
+    .enter-btn {
+        font-size: 40px;
+        padding: 10px 25px;
+        border: 2px solid #fff;
+        color: #fff;
+        text-decoration: none;
+        transition: 0.3s;
+        letter-spacing: 2px;
+    }
+
+    .enter-btn:hover {
+        background: #fff;
+        color: #000;
+        cursor: pointer;
+    }
+
+    .footer {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url("logo.jpg") center/cover no-repeat;
-        filter: brightness(0.25) blur(8px);
-        z-index: -2;
-    }
-
-    /* Przyciemnienie */
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.55);
-        z-index: -1;
-    }
-
-    .content {
-        text-align: center;
-        animation: fadeIn 2s ease forwards;
-    }
-
-    img {
-        width: 200px;
-        margin-bottom: 25px;
-        opacity: 0;
-        animation: fadeIn 2s ease forwards 0.5s;
-    }
-
-    #timer {
-        font-size: 70px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        margin-top: 10px;
-        opacity: 0;
-        animation: fadeIn 2s ease forwards 1s;
-        text-shadow: 0 0 15px rgba(255,255,255,0.4);
-    }
-
-    #label {
-        margin-top: 20px;
-        font-size: 26px;
-        letter-spacing: 6px;
-        opacity: 0;
-        animation: fadeIn 2s ease forwards 1.5s;
-        text-shadow: 0 0 10px rgba(255,255,255,0.3);
-    }
-
-    .socials {
-    position: absolute;
-    bottom: 25px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    opacity: 0;
-    animation: fadeIn 2s ease forwards 2s;
-}
-
-.socials a img {
-    width: 18px;
-    height: 18px;
-    opacity: 0.85;
-}
-
-.socials a:hover {
-    border-color: #fff;
-    background: rgba(255,255,255,0.18);
-    box-shadow: 0 0 10px rgba(255,255,255,0.4);
-}
-
-.socials a:hover img {
-    opacity: 1;
-}
-
-a {
-    height: 18px;
-    width: 18px;
-}
-
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        bottom: 20px;
+        font-size: 14px;
+        opacity: 0.6;
+        letter-spacing: 1px;
     }
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
-<div class="overlay"></div>
+<a href="countdown.html" class="enter-btn">&lt; enter &gt;</a>
 
-<div class="content">
-    <img src="logo.jpg" alt="Logo">
-    <div id="timer">00:00:00:00</div>
-    <div id="label">MGMF</div>
-</div>
-
-<div class="socials">
-    <a href="https://www.instagram.com/prod.persa/" target="_blank">
-        <img src="ig.webp" alt="Instagram">
-    </a>
-    <a href="https://www.instagram.com/sarcxus/" target="_blank">
-        <img src="ig.webp" alt="Instagram">
-    </a>
-    <a href="https://www.instagram.com/daw1d6/" target="_blank">
-        <img src="ig.webp" alt="Instagram">
-    </a>
-    <a href="https://www.instagram.com/emtyy_luz/" target="_blank">
-        <img src="ig.webp" alt="Instagram">
-    </a>
-    <a href="https://www.instagram.com/2024mgmf/" target="_blank">
-        <img src="ig.webp" alt="Instagram">
-    </a>
-</div>
-
-
-<script>
-    function updateTimer() {
-        const endDate = new Date("2026-04-03T00:00:00").getTime();
-        const now = new Date().getTime();
-        const diff = endDate - now;
-
-        if (diff <= 0) {
-            document.getElementById("timer").innerHTML = "00:00:00:00";
-            return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        document.getElementById("timer").innerHTML =
-            `${String(days).padStart(2,'0')}:` +
-            `${String(hours).padStart(2,'0')}:` +
-            `${String(minutes).padStart(2,'0')}:` +
-            `${String(seconds).padStart(2,'0')}`;
-    }
-
-    setInterval(updateTimer, 1000);
-    updateTimer();
-</script>
+<div class="footer">(r) MGMF 2026</div>
 
 </body>
 </html>
