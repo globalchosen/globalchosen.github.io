@@ -25,12 +25,46 @@
         text-decoration: none;
         transition: 0.3s;
         letter-spacing: 2px;
+        margin-bottom: 25px;
     }
 
     .enter-btn:hover {
         background: #fff;
         color: #000;
         cursor: pointer;
+    }
+
+    .secret-box {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .secret-input {
+        padding: 8px 12px;
+        font-size: 16px;
+        border: 2px solid #fff;
+        background: transparent;
+        color: #fff;
+        outline: none;
+        width: 180px;
+        letter-spacing: 1px;
+    }
+
+    .secret-btn {
+        padding: 8px 15px;
+        font-size: 16px;
+        border: 2px solid #fff;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+        letter-spacing: 1px;
+    }
+
+    .secret-btn:hover {
+        background: #fff;
+        color: #000;
     }
 
     .footer {
@@ -45,6 +79,22 @@
 <body>
 
 <a href="countdown.html" class="enter-btn">&lt; enter &gt;</a>
+
+<div class="secret-box">
+    <input type="text" id="secret" class="secret-input" placeholder="secretkey">
+    <button class="secret-btn" onclick="checkKey()">OK</button>
+</div>
+
+<script>
+function checkKey() {
+    const key = document.getElementById("secret").value.trim();
+    if (key === "public.key.debug") {
+        window.location.href = "synergize.html";
+    } else {
+        alert("Invalid key");
+    }
+}
+</script>
 
 <div class="footer">globalchosen • MGMF 2026</div>
 
