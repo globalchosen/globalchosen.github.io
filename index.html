@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>MGMF — Nadchodzi</title>
+<title>MGMF — Soon</title>
 <style>
     body {
         margin: 0;
@@ -17,7 +17,7 @@
         overflow: hidden;
     }
 
-    /* Tło z rozmyciem */
+    /* Rozmyte tło */
     .bg {
         position: absolute;
         top: 0;
@@ -25,7 +25,7 @@
         width: 100%;
         height: 100%;
         background: url("logo.jpg") center/cover no-repeat;
-        filter: brightness(0.25) blur(6px);
+        filter: brightness(0.25) blur(8px);
         z-index: -2;
     }
 
@@ -71,6 +71,39 @@
         text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
+    .socials {
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards 2s;
+}
+
+.socials a img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.85;
+}
+
+.socials a:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.18);
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+.socials a:hover img {
+    opacity: 1;
+}
+
+a {
+    height: 18px;
+    width: 18px;
+}
+
+
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -83,10 +116,26 @@
 <div class="overlay"></div>
 
 <div class="content">
-    <img src="logo.png" alt="Logo">
+    <img src="logo.jpg" alt="Logo">
     <div id="timer">00:00:00:00</div>
     <div id="label">MGMF</div>
 </div>
+
+<div class="socials">
+    <a href="https://www.instagram.com/prod.persa/" target="_blank">
+        <img src="ig.webp" alt="Instagram">
+    </a>
+    <a href="https://www.instagram.com/sarcxus/" target="_blank">
+        <img src="ig.webp" alt="Instagram">
+    </a>
+    <a href="https://www.instagram.com/daw1d6/" target="_blank">
+        <img src="ig.webp" alt="Instagram">
+    </a>
+    <a href="https://www.instagram.com/emtyy_luz/" target="_blank">
+        <img src="ig.webp" alt="Instagram">
+    </a>
+</div>
+
 
 <script>
     function updateTimer() {
