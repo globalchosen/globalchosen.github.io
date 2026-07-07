@@ -1,102 +1,291 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<title>MGMF</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #000;
-        color: #fff;
-        font-family: Consolas, monospace;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+    <meta charset="UTF-8">
+    <title>18 urodziny "solenizant"</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
 
-    .enter-btn {
-        font-size: 20px;
-        padding: 10px 25px;
-        border: 2px solid #fff;
-        color: #fff;
-        text-decoration: none;
-        transition: 0.3s;
-        letter-spacing: 2px;
-        margin-bottom: 25px;
-    }
+        header {
+            background: #111;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
 
-    .enter-btn:hover {
-        background: #fff;
-        color: #000;
-        cursor: pointer;
-    }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
 
-    .secret-box {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-    }
+        header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
 
-    .secret-input {
-        padding: 8px 12px;
-        font-size: 16px;
-        border: 2px solid #fff;
-        background: transparent;
-        color: #fff;
-        outline: none;
-        width: 180px;
-        letter-spacing: 1px;
-    }
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 16px 40px;
+        }
 
-    .secret-btn {
-        padding: 8px 15px;
-        font-size: 16px;
-        border: 2px solid #fff;
-        background: transparent;
-        color: #fff;
-        cursor: pointer;
-        transition: 0.3s;
-        letter-spacing: 1px;
-    }
+        .form-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 0 0 1px #ddd;
+            margin-bottom: 24px;
+        }
 
-    .secret-btn:hover {
-        background: #fff;
-        color: #000;
-    }
+        .form-row {
+            margin-bottom: 12px;
+        }
 
-    .footer {
-        position: absolute;
-        bottom: 20px;
-        font-size: 14px;
-        opacity: 0.6;
-        letter-spacing: 1px;
-    }
-</style>
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        button {
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #111;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .photo-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px #ddd;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-card img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 260px;
+        }
+
+        .photo-info {
+            padding: 10px 12px 12px;
+            font-size: 13px;
+        }
+
+        .photo-caption {
+            margin: 0 0 6px;
+            font-weight: 600;
+        }
+
+        .photo-author {
+            margin: 0;
+            color: #666;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 8px;
+        }
+    </style>
 </head>
 <body>
+<header>
+    <h1>18 urodziny "solenizant"</h1>
+    <p>Galeria zdjęć – każdy może dodać swoje zdjęcie z podpisem i imieniem</p>
+</header>
 
-<a href="countdown.html" class="enter-btn">&lt; enter &gt;</a>
+<main>
+    <section class="form-card">
+        <h2 style="margin-top:0;font-size:18px;">Dodaj swoje zdjęcie</h2>
 
-<div class="secret-box">
-    <input type="text" id="secret" class="secret-input" placeholder="secretkey">
-    <button class="secret-btn" onclick="checkKey()">OK</button>
-</div>
+        <div class="form-row">
+            <label for="photoFile">Zdjęcie (plik JPG/PNG) – wymagane</label>
+            <input type="file" id="photoFile" accept="image/*">
+        </div>
+
+        <div class="form-row">
+            <label for="photoCaption">Podpis do zdjęcia – wymagany</label>
+            <textarea id="photoCaption" placeholder="Np. 'Najlepsza ekipa z liceum'"></textarea>
+        </div>
+
+        <div class="form-row">
+            <label for="photoAuthor">Twoje imię / ksywka – wymagane</label>
+            <input type="text" id="photoAuthor" placeholder="Np. Jakub">
+        </div>
+
+        <button class="btn-primary" id="addPhotoBtn">Dodaj do galerii</button>
+        <p class="note">
+            Zdjęcia zapisują się w pamięci przeglądarki (localStorage) na tym urządzeniu.
+            Po wyczyszczeniu danych przeglądarki galeria może się zresetować.
+        </p>
+    </section>
+
+    <section>
+        <h2 style="font-size:18px;margin-bottom:12px;">Galeria</h2>
+        <div id="gallery" class="gallery"></div>
+        <p id="emptyState" class="empty-state" style="display:none;">
+            Brak zdjęć. Dodaj pierwsze zdjęcie powyżej!
+        </p>
+    </section>
+</main>
 
 <script>
-function checkKey() {
-    const key = document.getElementById("secret").value.trim();
-    if (key === "public.key.debug") {
-        window.location.href = "synergize.html";
-    } else {
-        alert("Invalid key");
+    const STORAGE_KEY = "galeria_18_solenizant";
+
+    const photoFileInput = document.getElementById("photoFile");
+    const photoCaptionInput = document.getElementById("photoCaption");
+    const photoAuthorInput = document.getElementById("photoAuthor");
+    const addPhotoBtn = document.getElementById("addPhotoBtn");
+    const galleryEl = document.getElementById("gallery");
+    const emptyStateEl = document.getElementById("emptyState");
+
+    function loadPhotos() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        try {
+            return JSON.parse(raw);
+        } catch (e) {
+            console.error("Błąd parsowania danych galerii", e);
+            return [];
+        }
     }
-}
+
+    function savePhotos(photos) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(photos));
+    }
+
+    function renderGallery() {
+        const photos = loadPhotos();
+        galleryEl.innerHTML = "";
+
+        if (photos.length === 0) {
+            emptyStateEl.style.display = "block";
+            return;
+        } else {
+            emptyStateEl.style.display = "none";
+        }
+
+        photos.forEach(photo => {
+            const card = document.createElement("div");
+            card.className = "photo-card";
+
+            const img = document.createElement("img");
+            img.src = photo.dataUrl;
+            img.alt = photo.caption || "Zdjęcie";
+
+            const info = document.createElement("div");
+            info.className = "photo-info";
+
+            const caption = document.createElement("p");
+            caption.className = "photo-caption";
+            caption.textContent = photo.caption;
+
+            const author = document.createElement("p");
+            author.className = "photo-author";
+            author.textContent = "Autor: " + photo.author;
+
+            info.appendChild(caption);
+            info.appendChild(author);
+
+            card.appendChild(img);
+            card.appendChild(info);
+
+            galleryEl.appendChild(card);
+        });
+    }
+
+    function addPhoto() {
+        const file = photoFileInput.files[0];
+        const caption = photoCaptionInput.value.trim();
+        const author = photoAuthorInput.value.trim();
+
+        if (!file) {
+            alert("Wybierz zdjęcie.");
+            return;
+        }
+        if (!caption) {
+            alert("Podpis do zdjęcia jest wymagany.");
+            return;
+        }
+        if (!author) {
+            alert("Musisz się podpisać (imię / ksywka).");
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const dataUrl = e.target.result;
+
+            const photos = loadPhotos();
+            photos.push({
+                dataUrl,
+                caption,
+                author,
+                createdAt: Date.now()
+            });
+            savePhotos(photos);
+            renderGallery();
+
+            photoFileInput.value = "";
+            photoCaptionInput.value = "";
+            photoAuthorInput.value = "";
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    addPhotoBtn.addEventListener("click", addPhoto);
+
+    renderGallery();
 </script>
-
-<div class="footer">globalchosen • MGMF 2026</div>
-
 </body>
 </html>
